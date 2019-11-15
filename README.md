@@ -1,6 +1,8 @@
 # gradle-vault-plugin
 
-this Gradle plugin is an attempt to hide secrets in the code repository.
+this Gradle plugin allows to hide secrets in the code repository.
+
+In details, all entries @@vault.MY-KEY@@ in a given subtree (_conf/*.properties_ by default) will be replaced by their secret value when the **processSecrets** task is run.
 
 ## Description
 
@@ -26,7 +28,7 @@ The encryption/decryption mechanism is based on AES 256 + salt + Base64.
 
 ## Secret resolution
 
-When the **processSecrets** task is triggered, all files matching the pattern (_'.\*/conf/.\*.properties'_ by default) in a configurable subtree (_build_ by default) are analyzed and each @@vault.MY-KEY@@@ entries are replaced with the value associated to MY-KEY in the vault (given a valid access).
+When the **processSecrets** task is triggered, all files matching the pattern (_'.\*/conf/.\*.properties'_ by default) in a configurable subtree (_build_ by default) are analyzed and each @@vault.MY-KEY@@ entries are replaced with the value associated to MY-KEY in the vault (given a valid access).
 
 If some keys can't be resolved, they are added to the _.vault_missing_secrets_ file.
 
